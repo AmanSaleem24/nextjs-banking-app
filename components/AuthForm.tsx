@@ -11,6 +11,7 @@ import { FieldGroup } from "@/components/ui/field";
 import { Button } from "@/components/ui/button";
 import { authFormSchema } from "@/lib/utils";
 import { useRouter } from "next/navigation";
+import { signIn, signUp } from "@/lib/actions/user.actions";
 
 const AuthForm = ({ type }: { type: string }) => {
   const router = useRouter()
@@ -32,17 +33,17 @@ const AuthForm = ({ type }: { type: string }) => {
     setIsLoading(true);
     try {
       if (type === "sign-up") {
-        // const newUser = await signUp(data)
-        // setUser(newUser)
+        const newUser = await signUp(data)
+        setUser(newUser)
       }
       if (type === "sign-in") {
-        // const response = await  SignIN({
-        //   email: data.email,
-        //   password: data.password
-        // })
+        const response = await signIn({
+          email: data.email,
+          password: data.password
+        })
 
-        // if(response) 
-        //   router.push('/')
+        if(response) 
+          router.push('/')
       }
     } catch (error) {
       console.log(error);
