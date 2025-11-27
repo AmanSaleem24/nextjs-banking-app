@@ -381,3 +381,24 @@
     @apply text-16 font-semibold text-black-2 max-xl:hidden;
   }
 }
+/* Shake Animation */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-4px); }
+  40% { transform: translateX(4px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
+}
+
+.shake {
+  animation: shake 0.35s ease-in-out;
+}
+
+input[aria-invalid="true"] {
+  --input: 0 72.22% 50.59% !important; /* red border */
+  border-color: hsl(var(--input)) !important;
+  box-shadow: 0 0 0 1px hsl(var(--input)) !important;
+}
+label[data-invalid="true"]  {
+  color: hsl(var(--destructive)) !important;
+}
