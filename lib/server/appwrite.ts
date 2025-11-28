@@ -1,6 +1,6 @@
 // src/lib/server/appwrite.js
 "use server";
-import { Client, Account, Databases, Users } from "node-appwrite";
+import { Client, Account, Databases, Users, TablesDB } from "node-appwrite";
 import { cookies } from "next/headers";
 
 export async function createSessionClient() {
@@ -19,6 +19,7 @@ export async function createSessionClient() {
     get account() {
       return new Account(client);
     },
+    tables: new TablesDB(client)
   };
 }
 
@@ -27,15 +28,10 @@ export async function createAdminClient() {
     .setEndpoint(process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT!)
     .setProject(process.env.NEXT_PUBLIC_APPWRITE_PROJECT!)
     .setKey(process.env.NEXT_APPWRITE_SECRET!);
+  
   return {
-    get account() {
-      return new Account(client);
-    },
-    get database() {
-      return new Databases(client);
-    },
-    get user() {
-      return new Users(client);
-    },
+    account: new Account(client),
+    tables: new TablesDB(client), // Changed from "databases" to "tables"
+    user: new Users(client),
   };
 }

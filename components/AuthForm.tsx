@@ -12,9 +12,10 @@ import { Button } from "@/components/ui/button";
 import { authFormSchema } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 import { signIn, signUp } from "@/lib/actions/user.actions";
+import PlaidLink from "./PlaidLink";
 
 const AuthForm = ({ type }: { type: string }) => {
-  const router = useRouter()
+  const router = useRouter();
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -32,18 +33,29 @@ const AuthForm = ({ type }: { type: string }) => {
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
     setIsLoading(true);
     try {
+      const userData = {
+        firstName: data.firstName!,
+        lastName: data.lastName!,
+        address1: data.address1!,
+        city: data.city!,
+        state: data.state!,
+        postalCode: data.postalCode!,
+        dateOfBirth: data.dateOfBirth!,
+        ssn: data.ssn!,
+        email: data.email,
+        password: data.password,
+      };
       if (type === "sign-up") {
-        const newUser = await signUp(data)
-        setUser(newUser)
+        const newUser = await signUp(userData);
+        setUser(newUser);
       }
       if (type === "sign-in") {
         const response = await signIn({
           email: data.email,
-          password: data.password
-        })
+          password: data.password,
+        });
 
-        if(response) 
-          router.push('/')
+        if (response) router.push("/");
       }
     } catch (error) {
       console.log(error);
@@ -78,7 +90,9 @@ const AuthForm = ({ type }: { type: string }) => {
         </div>
       </header>
       {user ? (
-        <div className="flex flex-col gap-4">{/* PlaidLink  */}</div>
+        <div className="flex flex-col gap-4">
+          <PlaidLink user={user} variant="primary" />
+        </div>
       ) : (
         <>
           <form
@@ -91,14 +105,14 @@ const AuthForm = ({ type }: { type: string }) => {
                 <>
                   <div className="flex gap-4">
                     <FormInput
-                      name={"firstName" }
+                      name={"firstName"}
                       label="First Name"
                       placeholder="ex: John"
                       control={form.control}
                       type="text"
                     />
                     <FormInput
-                      name={"lastName" }
+                      name={"lastName"}
                       label="Last Name"
                       placeholder="ex: Doe"
                       control={form.control}
@@ -121,7 +135,7 @@ const AuthForm = ({ type }: { type: string }) => {
                   />
                   <div className="flex gap-4">
                     <FormInput
-                      name={"state" }
+                      name={"state"}
                       label="State"
                       placeholder="ex: NY"
                       control={form.control}
@@ -137,7 +151,7 @@ const AuthForm = ({ type }: { type: string }) => {
                   </div>
                   <div className="flex gap-4">
                     <FormInput
-                      name={"dateOfBirth" }
+                      name={"dateOfBirth"}
                       label="Date of Birth"
                       placeholder="yyyy-mm-dd"
                       control={form.control}
@@ -155,7 +169,7 @@ const AuthForm = ({ type }: { type: string }) => {
               )}
 
               <FormInput
-                name={"email" }
+                name={"email"}
                 label="Email"
                 placeholder="Enter your email"
                 control={form.control}
@@ -204,64 +218,6 @@ const AuthForm = ({ type }: { type: string }) => {
 };
 
 export default AuthForm;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // "use client";
 // import Image from "next/image";
@@ -459,4 +415,3 @@ export default AuthForm;
 // };
 
 // export default AuthForm;
-
