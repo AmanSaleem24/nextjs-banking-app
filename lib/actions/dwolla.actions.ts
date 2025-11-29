@@ -17,6 +17,13 @@ const getEnvironment = (): "production" | "sandbox" => {
   }
 };
 
+console.log("Dwolla Config Check:", {
+  env: process.env.DWOLLA_ENV,
+  keyExists: !!process.env.DWOLLA_KEY,
+  secretExists: !!process.env.DWOLLA_SECRET,
+  keyPrefix: process.env.DWOLLA_KEY?.substring(0, 8) + "...",
+});
+
 const dwollaClient = new Client({
   environment: getEnvironment(),
   key: process.env.DWOLLA_KEY as string,
@@ -83,11 +90,12 @@ export const createTransfer = async ({
         value: amount,
       },
     };
-    return await dwollaClient
-      .post("transfers", requestBody)
-      .then((res) => res.headers.get("location"));
-  } catch (err) {
-    console.error("Transfer fund failed: ", err);
+
+    const response = await dwollaClient.post("transfers", requestBody);
+    return response.headers.get("location");
+  } catch (err: any) {
+    console.error("Transfer failed:", err.message);
+    throw err;
   }
 };
 
@@ -110,5 +118,31 @@ export const addFundingSource = async ({
     return await createFundingSource(fundingSourceOptions);
   } catch (err) {
     console.error("Transfer fund failed: ", err);
+  }
+};
+export const testDwollaConnection = async () => {
+  try {
+    const root = await dwollaClient.get("/");
+    console.log("Dwolla connection successful:", root.body);
+    return { success: true };
+  } catch (err: any) {
+    console.error("Dwolla connection failed:", err);
+    return { success: false, error: err.message };
+  }
+};
+export const verifyFundingSource = async (fundingSourceUrl: string) => {
+  try {
+    const fundingSource = await dwollaClient.get(fundingSourceUrl);
+    console.log("Funding Source:", {
+      url: fundingSourceUrl,
+      status: fundingSource.body.status,
+      type: fundingSource.body.type,
+      name: fundingSource.body.name,
+    });
+    return fundingSource.body;
+  } catch (err: any) {
+    console.error("Invalid funding source:", fundingSourceUrl);
+    console.error("Error:", err.message);
+    return null;
   }
 };

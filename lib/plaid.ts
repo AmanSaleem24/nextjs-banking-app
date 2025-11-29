@@ -1,8 +1,5 @@
 import {Configuration, PlaidApi, PlaidEnvironments} from "plaid"
 
-console.log('PLAID-CLIENT-ID',process.env.PLAID_CLIENT_ID)
-console.log('PLAID-SECRET', process.env.PLAID_SECRET)
-
 const configuration = new Configuration({
     basePath: PlaidEnvironments.sandbox,
     baseOptions: {

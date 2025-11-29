@@ -50,7 +50,7 @@ export const ITEMS = [
 ];
 
 export const topCategoryStyles = {
-  "Food and Drink": {
+  FOOD_AND_DRINK: {
     bg: "bg-blue-25",
     circleBg: "bg-blue-100",
     text: {
@@ -63,7 +63,7 @@ export const topCategoryStyles = {
     },
     icon: "/icons/monitor.svg",
   },
-  Travel: {
+  TRAVEL: {
     bg: "bg-success-25",
     circleBg: "bg-success-100",
     text: {
@@ -92,23 +92,109 @@ export const topCategoryStyles = {
 };
 
 export const transactionCategoryStyles = {
-  "Food and Drink": {
+  TRANSPORTATION: {
+    borderColor: "border-blue-600",
+    backgroundColor: "bg-blue-600",
+    textColor: "text-blue-700",
+    chipBackgroundColor: "bg-blue-100",
+  },
+
+  FOOD_AND_DRINK: {
     borderColor: "border-pink-600",
-    backgroundColor: "bg-pink-500",
+    backgroundColor: "bg-pink-600",
     textColor: "text-pink-700",
-    chipBackgroundColor: "bg-inherit",
+    chipBackgroundColor: "bg-pink-100",
   },
-  Payment: {
-    borderColor: "border-success-600",
-    backgroundColor: "bg-green-600",
-    textColor: "text-success-700",
-    chipBackgroundColor: "bg-inherit",
+
+  TRAVEL: {
+    borderColor: "border-indigo-600",
+    backgroundColor: "bg-indigo-600",
+    textColor: "text-indigo-700",
+    chipBackgroundColor: "bg-indigo-100",
   },
-  "Bank Fees": {
-    borderColor: "border-success-600",
+
+  ENTERTAINMENT: {
+    borderColor: "border-purple-600",
+    backgroundColor: "bg-purple-600",
+    textColor: "text-purple-700",
+    chipBackgroundColor: "bg-purple-100",
+  },
+
+  TRANSFER_OUT: {
+    borderColor: "border-orange-600",
+    backgroundColor: "bg-orange-600",
+    textColor: "text-orange-700",
+    chipBackgroundColor: "bg-orange-100",
+  },
+
+  TRANSFER_IN: {
+    borderColor: "border-orange-600",
+    backgroundColor: "bg-orange-600",
+    textColor: "text-orange-700",
+    chipBackgroundColor: "bg-orange-100",
+  },
+
+  INCOME: {
+    borderColor: "border-green-600",
     backgroundColor: "bg-green-600",
-    textColor: "text-success-700",
-    chipBackgroundColor: "bg-inherit",
+    textColor: "text-green-700",
+    chipBackgroundColor: "bg-green-100",
+  },
+
+  LOAN_PAYMENT: {
+    borderColor: "border-red-600",
+    backgroundColor: "bg-red-600",
+    textColor: "text-red-700",
+    chipBackgroundColor: "bg-red-100",
+  },
+
+  BANK_FEES: {
+    borderColor: "border-gray-600",
+    backgroundColor: "bg-gray-600",
+    textColor: "text-gray-700",
+    chipBackgroundColor: "bg-gray-100",
+  },
+
+  SHOPPING: {
+    borderColor: "border-yellow-600",
+    backgroundColor: "bg-yellow-600",
+    textColor: "text-yellow-700",
+    chipBackgroundColor: "bg-yellow-100",
+  },
+
+  GROCERIES: {
+    borderColor: "border-lime-600",
+    backgroundColor: "bg-lime-600",
+    textColor: "text-lime-700",
+    chipBackgroundColor: "bg-lime-100",
+  },
+
+  HEALTHCARE: {
+    borderColor: "border-rose-600",
+    backgroundColor: "bg-rose-600",
+    textColor: "text-rose-700",
+    chipBackgroundColor: "bg-rose-100",
+  },
+
+  PERSONAL_CARE: {
+    borderColor: "border-teal-600",
+    backgroundColor: "bg-teal-600",
+    textColor: "text-teal-700",
+    chipBackgroundColor: "bg-teal-100",
+  },
+
+  EDUCATION: {
+    borderColor: "border-violet-600",
+    backgroundColor: "bg-violet-600",
+    textColor: "text-violet-700",
+    chipBackgroundColor: "bg-violet-100",
+  },
+
+  UTILITIES: {
+    borderColor: "border-cyan-600",
+    backgroundColor: "bg-cyan-600",
+    textColor: "text-cyan-700",
+    chipBackgroundColor: "bg-cyan-100",
   },
   Transfer: {
     borderColor: "border-red-700",
@@ -128,10 +214,19 @@ export const transactionCategoryStyles = {
     textColor: "text-[#027A48]",
     chipBackgroundColor: "bg-[#ECFDF3]",
   },
+
+  OTHER: {
+    borderColor: "border-gray-500",
+    backgroundColor: "bg-gray-500",
+    textColor: "text-gray-700",
+    chipBackgroundColor: "bg-gray-100",
+  },
+
+  // Fallback
   default: {
-    borderColor: "",
-    backgroundColor: "bg-blue-500",
-    textColor: "text-blue-700",
-    chipBackgroundColor: "bg-inherit",
+    borderColor: "border-gray-400",
+    backgroundColor: "bg-gray-300",
+    textColor: "text-gray-700",
+    chipBackgroundColor: "bg-gray-100",
   },
 };

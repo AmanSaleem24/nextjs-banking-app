@@ -16,7 +16,7 @@ export default async function RootLayout({
     <main className="flex h-screen w-full font-inter">
       <Sidebar user={loggedIn} />
 
-      <div className="flex flex-col size-full">
+      <div className="flex flex-col size-full  min-w-0">
         <div className="root-layout">
           <Link href='/'>
             <Image
